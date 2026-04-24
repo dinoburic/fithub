@@ -1,0 +1,39 @@
+<div class="cart-card">
+  
+  <div class="image-container">
+    <img [src]="'/images/planphoto.jpg'" 
+         [alt]="item.planTitle"
+         onerror="this.src='/images/planphoto.jpg'">
+  </div>
+
+  <div class="details">
+    <h3 class="title">{{ item.planTitle }}</h3>
+    
+    <div class="meta">
+      <span *ngIf="item.difficulty">{{ item.difficulty }}</span>
+    </div>
+
+    <div class="price">
+      {{ item.price | currency:'EUR':'symbol':'1.0-0' }}
+    </div>
+  </div>
+
+  <div class="actions">
+    <button class="action-btn cart-btn" 
+            [class.in-cart]="isInCart" 
+            [disabled]="isInCart" 
+            (click)="onAddToCart()">
+      <i class="fas" [ngClass]="isInCart ? 'fa-check' : 'fa-shopping-bag'"></i>
+      {{ isInCart ? 'Already in cart' : 'Add to Cart' }}
+    </button>
+
+    <button class="action-btn delete-btn" (click)="onRemove()" title="Remove from wishlist">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 6h18"/>
+        <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"/>
+        <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"/>
+      </svg>
+    </button>
+  </div>
+
+</div>

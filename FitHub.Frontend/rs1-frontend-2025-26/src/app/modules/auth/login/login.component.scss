@@ -1,0 +1,235 @@
+// src/app/pages/auth/login/login.component.scss
+
+/* ===============================
+   COLOR PALETTE (DARK AUTH)
+================================ */
+$accent-orange: #ff8a2a;
+$dark-bg: rgba(0, 0, 0, 0.65);
+$input-bg: rgba(255, 255, 255, 0.35);
+$input-bg-focus: rgba(255, 255, 255, 0.55);
+$text-white: #ffffff;
+$text-muted: rgba(255, 255, 255, 0.7);
+$error-red: #ff4d4f;
+
+/* ===============================
+   CONTAINER
+================================ */
+:host {
+  width: 45%;
+}
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 20px;
+}
+
+
+/* ===============================
+   BACKGROUND OVERLAY
+================================ */
+.auth-background {
+  position: absolute;
+  inset: 0;
+  background: $dark-bg;
+  backdrop-filter: blur(2px);
+  z-index: 0;
+}
+
+/* ===============================
+   CONTENT
+================================ */
+.auth-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  
+}
+
+/* ===============================
+   REMOVE BRAND FROM FORM
+================================ */
+.auth-brand {
+  display: none;
+}
+
+/* ===============================
+   REMOVE CARD LOOK
+================================ */
+.auth-card {
+  background: transparent;
+  padding: 0;
+  box-shadow: none !important;
+  border: none;
+}
+
+/* ===============================
+   TITLE & SUBTITLE
+================================ */
+.login-title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-white;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.login-subtitle {
+  font-size: 14px;
+  color: $text-muted;
+  margin-bottom: 32px;
+  text-align: center;
+  a {
+    color: $accent-orange;
+    text-decoration: none;
+  }
+}
+
+/* ===============================
+   FORM
+================================ */
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===============================
+   LABELS
+================================ */
+.field-label {
+  font-size: 14px;
+  color: $text-muted;
+  margin-bottom: 6px;
+}
+
+/* ===============================
+   INPUTS
+================================ */
+.auth-input {
+  box-sizing: border-box;
+  width: 100%;
+  height: 44px;
+  padding: 0 14px;
+  margin-bottom: 22px;
+
+  background: $input-bg;
+  border-radius: 10px;
+  border: none;
+
+  color: #000;
+  font-size: 14px;
+}
+
+.auth-input:focus {
+  outline: none;
+  background: $input-bg-focus;
+}
+
+/* ===============================
+   MATERIAL OVERRIDES
+================================ */
+.full-width {
+  width: 100%;
+
+  ::ng-deep {
+    .mdc-notched-outline {
+      display: none;
+    }
+
+    .mat-mdc-text-field-wrapper {
+      background: $input-bg;
+      border-radius: 10px;
+    }
+
+    input {
+      padding: 14px;
+      font-size: 14px;
+    }
+
+    .mat-mdc-form-field-icon-prefix {
+      display: none;
+    }
+  }
+}
+
+/* ===============================
+   ERROR MESSAGE
+================================ */
+.error-message {
+  background: rgba(255, 77, 79, 0.15);
+  border: 1px solid $error-red;
+  color: $error-red;
+  padding: 14px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* ===============================
+   SOCIAL LOGIN
+================================ */
+.social-login {
+  text-align: center;
+  margin: 24px 0;
+  color: $text-muted;
+  font-size: 14px;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.social-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* ===============================
+   SUBMIT BUTTON
+================================ */
+.login-button {
+  width: 100%;
+  height: 48px;
+  border-radius: 12px;
+  background: $accent-orange;
+  border: none;
+
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+.login-button:hover {
+  background: darken($accent-orange, 8%);
+}
+
+/* ===============================
+   REGISTER LINK
+================================ */
+.register-prompt {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+  color: $text-muted;
+
+  a {
+    color: $accent-orange;
+    text-decoration: none;
+    font-weight: 500;
+  }
+}

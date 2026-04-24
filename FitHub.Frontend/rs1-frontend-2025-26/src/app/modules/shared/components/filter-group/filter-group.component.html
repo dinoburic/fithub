@@ -1,0 +1,20 @@
+<div class="filter-section">
+      <div class="header" (click)="isExpanded = !isExpanded">
+        <span class="title">
+          <i [class]="group.icon"></i> {{ group.title }}
+        </span>
+        <i class="arrow" [class.rotated]="isExpanded">▼</i>
+      </div>
+
+      <div class="options-list" *ngIf="isExpanded">
+        <label *ngFor="let option of group.options" class="checkbox-container">
+          <input 
+            type="checkbox" 
+            [checked]="option.checked"
+            (change)="onToggle(option)">
+            <span class="checkmark"></span>
+          {{ option.label }}
+          
+        </label>
+      </div>
+    </div>

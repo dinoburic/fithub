@@ -1,0 +1,103 @@
+<!-- Hero Section -->
+  <section class="hero">
+  <div class="hero-container">
+
+    <div class="hero-text">
+      <h1 class="hero-title">
+        No Limits,<br>
+        <span>Just Results</span>
+      </h1>
+
+      <p class="hero-subtitle">
+        From beginner to advanced, experience workouts designed to help you achieve
+        peak performance and exceed your fitness goals.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn-primary" routerLink="/auth/login">Join now →</button>
+        <button class="btn-secondary">Learn more</button>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="images/runner.png" alt="Runner">
+    </div>
+
+  </div>
+
+  <div class="hero-fade"></div>
+</section>
+
+<section class="chatbot-section">
+  <div class="chatbot-container">
+    
+    <div class="chatbot-header">
+      <h2 class="chatbot-title">Get Your Fit</h2>
+      <p class="chatbot-subtitle">
+        Set your goals and let our AI chatbot guide you to the perfect 
+        fitness plan tailored just for you.
+      </p>
+    </div>
+
+    <div class="chatbot-content">
+      
+      <div class="chatbot-visual">
+        <img src="/images/findyourfit.jpg" alt="Fitness Training">
+      </div>
+
+      <div class="chatbot-wrapper">
+        <div>
+          <app-ai-chat></app-ai-chat>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="plans-section">
+  <div class="plans-container">
+    
+    <div class="plans-header">
+      <h2 class="plans-title">Perfect Plans For Your Fitness Goals</h2>
+      <p class="plans-subtitle">
+        Pick your plan and start seeing results faster - your strongest self is just a workout away.
+      </p>
+    </div>
+
+    <div class="plans-grid-wrapper">
+      <app-fitness-plan-card *ngFor="let plan of fitnessPlans | slice:0:5" 
+    [fitnessPlan]="plan" (click)="openProgram(plan.planID)" style="cursor: pointer"></app-fitness-plan-card>
+    </div>
+
+    <div class="plans-footer">
+      <a routerLink="/programs" class="discover-link">
+        DISCOVER MORE <span>→</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<section class="results-section">
+  <div class="results-container">
+    
+    <div class="results-text">
+      <h2 class="results-title">
+        Real People,<br>
+        <span>Real Results</span>
+      </h2>
+      
+      <p class="results-subtitle">
+        Join thousands who have achieved their fitness goals with FitHub workout plans.
+      </p>
+      
+      <button class="btn-primary" routerLink="/auth/login">Join now →</button>
+    </div>
+
+    <div class="results-visual">
+      <img src="/images/dumbbells.jpg" alt="Dumbbells" class="dumbbells-img">
+    </div>
+
+  </div>
+</section>

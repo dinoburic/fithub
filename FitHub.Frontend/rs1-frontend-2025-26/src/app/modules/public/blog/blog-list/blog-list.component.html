@@ -1,0 +1,81 @@
+<section class="blog-section">
+  <div class="blog-container">
+
+    <!-- Header -->
+    <div class="blog-header">
+      <h1 class="blog-title">FitHub Blog</h1>
+      <p class="blog-subtitle">
+        Discover fitness tips, workout advice, nutrition guides, and inspiring stories
+        to help you on your fitness journey.
+      </p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+      <mat-form-field class="search-field" appearance="outline">
+        <mat-label>Search articles...</mat-label>
+        <input
+          matInput
+          placeholder="Search by title or content"
+          [(ngModel)]="request.search"
+          (keyup.enter)="onSearch()"
+        />
+        <mat-icon matSuffix>search</mat-icon>
+      </mat-form-field>
+    </div>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading articles...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="!isLoading && errorMessage" class="error-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ errorMessage }}</p>
+      <button mat-raised-button color="primary" (click)="loadPagedData()">
+        Try Again
+      </button>
+    </div>
+
+    <!-- Blog Posts Grid -->
+    <div class="blog-grid" *ngIf="!isLoading && !errorMessage">
+      <div class="blog-card" *ngFor="let post of items" (click)="onViewPost(post)">
+        <div class="card-image">
+          <img src="/images/blog-placeholder.jpg" alt="{{ post.title }}">
+          <span class="card-category">{{ post.categoryTitle }}</span>
+        </div>
+        <div class="card-content">
+          <h3 class="card-title">{{ post.title }}</h3>
+          <p class="card-preview">{{ post.contentPreview || 'No preview available...' }}</p>
+          <div class="card-meta">
+            <span class="card-author">
+              <mat-icon>person</mat-icon>
+              {{ post.authorName }}
+            </span>
+            <span class="card-date">
+              <mat-icon>calendar_today</mat-icon>
+              {{ formatDate(post.createdAtUtc) }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" *ngIf="items.length === 0">
+        <mat-icon>article</mat-icon>
+        <p>No articles found.</p>
+        <button mat-stroked-button color="primary" *ngIf="request.search" (click)="request.search = ''; onSearch()">
+          Clear search
+        </button>
+      </div>
+    </div>
+
+    <!-- Pagination -->
+    <div class="pagination-container" *ngIf="!isLoading && items.length > 0">
+      <app-fit-paginator-bar [vm]="this"></app-fit-paginator-bar>
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,169 @@
+<section class="blog-detail-section">
+  <div class="blog-detail-container">
+
+    <!-- Back Button -->
+    <button class="back-btn" mat-button (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon>
+      Back to Blog
+    </button>
+
+    <!-- Loading State -->
+    <div *ngIf="isLoading" class="loading-container">
+      <mat-spinner diameter="50"></mat-spinner>
+      <p>Loading article...</p>
+    </div>
+
+    <!-- Error State -->
+    <div *ngIf="!isLoading && errorMessage" class="error-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ errorMessage }}</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        Go Back
+      </button>
+    </div>
+
+    <!-- Article Content -->
+    <article class="article" *ngIf="!isLoading && post">
+
+      <!-- Article Header -->
+      <header class="article-header">
+        <span class="article-category">{{ post.categoryTitle }}</span>
+        <h1 class="article-title">{{ post.title }}</h1>
+        <div class="article-meta">
+          <span class="meta-author">
+            <mat-icon>person</mat-icon>
+            {{ post.authorName }}
+          </span>
+          <span class="meta-date">
+            <mat-icon>calendar_today</mat-icon>
+            {{ formatDate(post.createdAtUtc) }}
+          </span>
+          <span class="meta-comments">
+            <mat-icon>chat_bubble_outline</mat-icon>
+            {{ post.commentsCount }} comments
+          </span>
+        </div>
+      </header>
+
+      <!-- Article Image -->
+      <div class="article-image">
+        <img src="/images/blog-placeholder.jpg" alt="{{ post.title }}">
+      </div>
+
+      <!-- Article Body -->
+      <div class="article-body">
+        <p [innerHTML]="post.content || 'No content available.'"></p>
+      </div>
+
+      <!-- Reactions Section -->
+      <div class="reactions-section">
+        <h4>Did you find this article helpful?</h4>
+        <div class="reaction-buttons">
+          <button
+            mat-stroked-button
+            class="reaction-btn"
+            [class.active]="getReactionCount('like') > 0"
+            (click)="onReact('like')"
+            [disabled]="!isLoggedIn">
+            <mat-icon>thumb_up</mat-icon>
+            <span>Like</span>
+            <span class="count" *ngIf="getReactionCount('like') > 0">{{ getReactionCount('like') }}</span>
+          </button>
+          <button
+            mat-stroked-button
+            class="reaction-btn"
+            [class.active]="getReactionCount('love') > 0"
+            (click)="onReact('love')"
+            [disabled]="!isLoggedIn">
+            <mat-icon>favorite</mat-icon>
+            <span>Love</span>
+            <span class="count" *ngIf="getReactionCount('love') > 0">{{ getReactionCount('love') }}</span>
+          </button>
+          <button
+            mat-stroked-button
+            class="reaction-btn"
+            [class.active]="getReactionCount('insightful') > 0"
+            (click)="onReact('insightful')"
+            [disabled]="!isLoggedIn">
+            <mat-icon>lightbulb</mat-icon>
+            <span>Insightful</span>
+            <span class="count" *ngIf="getReactionCount('insightful') > 0">{{ getReactionCount('insightful') }}</span>
+          </button>
+          <button
+            mat-stroked-button
+            class="reaction-btn"
+            [class.active]="getReactionCount('celebrate') > 0"
+            (click)="onReact('celebrate')"
+            [disabled]="!isLoggedIn">
+            <mat-icon>celebration</mat-icon>
+            <span>Celebrate</span>
+            <span class="count" *ngIf="getReactionCount('celebrate') > 0">{{ getReactionCount('celebrate') }}</span>
+          </button>
+        </div>
+        <p class="login-hint" *ngIf="!isLoggedIn">
+          <a routerLink="/auth/login">Log in</a> to react to this article
+        </p>
+      </div>
+
+      <!-- Comments Section -->
+      <div class="comments-section">
+        <h3 class="comments-title">
+          <mat-icon>forum</mat-icon>
+          Comments ({{ comments.length }})
+        </h3>
+
+        <!-- Add Comment Form -->
+        <div class="comment-form" *ngIf="isLoggedIn">
+          <mat-form-field appearance="outline" class="comment-input">
+            <mat-label>Write a comment...</mat-label>
+            <textarea
+              matInput
+              [(ngModel)]="newCommentContent"
+              rows="3"
+              placeholder="Share your thoughts..."></textarea>
+          </mat-form-field>
+          <button
+            mat-raised-button
+            color="primary"
+            [disabled]="!newCommentContent.trim() || isSubmittingComment"
+            (click)="onSubmitComment()">
+            <mat-icon>send</mat-icon>
+            Post Comment
+          </button>
+        </div>
+
+        <p class="login-hint" *ngIf="!isLoggedIn">
+          <a routerLink="/auth/login">Log in</a> to leave a comment
+        </p>
+
+        <!-- Comments Loading -->
+        <div *ngIf="isLoadingComments" class="comments-loading">
+          <mat-spinner diameter="30"></mat-spinner>
+        </div>
+
+        <!-- Comments List -->
+        <div class="comments-list" *ngIf="!isLoadingComments">
+          <div class="comment-card" *ngFor="let comment of comments">
+            <div class="comment-avatar">
+              <mat-icon>account_circle</mat-icon>
+            </div>
+            <div class="comment-content">
+              <div class="comment-header">
+                <span class="comment-author">{{ comment.authorName }}</span>
+                <span class="comment-date">{{ formatDateTime(comment.createdAtUtc) }}</span>
+              </div>
+              <p class="comment-text">{{ comment.content }}</p>
+            </div>
+          </div>
+
+          <div class="no-comments" *ngIf="comments.length === 0">
+            <mat-icon>chat_bubble_outline</mat-icon>
+            <p>No comments yet. Be the first to share your thoughts!</p>
+          </div>
+        </div>
+      </div>
+
+    </article>
+
+  </div>
+</section>

@@ -1,0 +1,31 @@
+<div class="chatbot-ui">
+  <div class="chatbot-header">
+    FitBot – Your personalized chatbot
+  </div>
+  <div class="chatbot-messages">
+    <div *ngFor="let msg of chatHistory">
+      <div
+        class="chatbot-bubble"
+        [ngClass]="{
+          'user-bubble': msg.sender === 'Korisnik',
+        'bot-bubble': msg.sender === 'FitHub AI' || msg.sender === 'System'
+        }"
+      >
+        {{ msg.text }}
+      </div>
+    </div>
+  </div>
+  <form class="chatbot-input" (ngSubmit)="sendMessage()">
+    <input
+      type="text"
+      [(ngModel)]="userMessage"
+      name="userInput"
+      placeholder="Type a message..."
+      autocomplete="off"
+      required
+    />
+    <button class="send-btn" type="submit">
+      <svg width="24" height="24" fill="none"><path d="M2 21l21-9-21-9v7l15 2-15 2v7z" fill="#fff"/></svg>
+    </button>
+  </form>
+</div>

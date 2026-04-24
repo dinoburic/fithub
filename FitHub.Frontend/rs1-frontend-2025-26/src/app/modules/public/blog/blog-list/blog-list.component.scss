@@ -1,0 +1,225 @@
+$orange-primary: #ff8235;
+$orange-hover: #ff9654;
+$bg-dark: #000000;
+$bg-card: #1a1a1a;
+$text-light: #ffffff;
+$text-muted: #aaaaaa;
+
+.blog-section {
+  background-color: $bg-dark;
+  min-height: 100vh;
+  padding: 80px 20px;
+}
+
+.blog-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.blog-header {
+  text-align: center;
+  margin-bottom: 50px;
+
+  .blog-title {
+    font-size: 56px;
+    font-weight: 800;
+    color: $text-light;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+
+    @media (max-width: 768px) {
+      font-size: 40px;
+    }
+  }
+
+  .blog-subtitle {
+    font-size: 18px;
+    color: $text-muted;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+
+  .search-field {
+    width: 100%;
+    max-width: 500px;
+
+    ::ng-deep {
+      .mat-mdc-text-field-wrapper {
+        background: $bg-card;
+        border-radius: 12px;
+      }
+
+      .mat-mdc-form-field-flex {
+        padding: 0 16px;
+      }
+
+      input {
+        color: $text-light;
+      }
+
+      .mdc-floating-label,
+      .mat-mdc-form-field-label {
+        color: $text-muted !important;
+      }
+
+      .mat-icon {
+        color: $orange-primary;
+      }
+    }
+  }
+}
+
+.loading-container,
+.error-container {
+  text-align: center;
+  padding: 60px 20px;
+  color: $text-muted;
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: $orange-primary;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.blog-card {
+  background: $bg-card;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba($orange-primary, 0.15);
+
+    .card-image img {
+      transform: scale(1.05);
+    }
+  }
+
+  .card-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .card-category {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      background: $orange-primary;
+      color: $text-light;
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+  }
+
+  .card-content {
+    padding: 24px;
+
+    .card-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: $text-light;
+      margin-bottom: 12px;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-preview {
+      font-size: 14px;
+      color: $text-muted;
+      line-height: 1.6;
+      margin-bottom: 20px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 12px;
+        color: $text-muted;
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+          color: $orange-primary;
+        }
+      }
+    }
+  }
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 60px 20px;
+  color: $text-muted;
+
+  mat-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+  }
+
+  p {
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+}
+
+.pagination-container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}

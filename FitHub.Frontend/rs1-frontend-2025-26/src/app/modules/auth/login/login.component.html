@@ -1,0 +1,218 @@
+<!-- src/app/pages/auth/login/login.component.html 
+<div class="auth-container">
+  <div class="auth-background">
+
+    <div class="bg-shape shape-1"></div>
+    <div class="bg-shape shape-2"></div>
+    <div class="bg-shape shape-3"></div>
+  </div>
+
+  <div class="auth-content">
+  
+    <div class="auth-brand">
+      <mat-icon class="brand-icon">storefront</mat-icon>
+      <div class="logo"><img src="assets/images/logo.svg" alt="fithub logo"></div>
+      <h1 class="brand-name">FitHub</h1>
+    </div>
+
+    <mat-card class="auth-card mat-elevation-z8">
+      <mat-card-header>
+        <mat-card-title>{{ 'AUTH.LOGIN.TITLE' | translate }}</mat-card-title>
+        <mat-card-subtitle>Enter your credentials to access</mat-card-subtitle>
+      </mat-card-header>
+
+      <mat-card-content>
+        
+        <div *ngIf="errorMessage" class="error-message" @fadeIn>
+          <mat-icon>error_outline</mat-icon>
+          <span>{{ errorMessage }}</span>
+        </div>
+
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+         
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'AUTH.LOGIN.EMAIL_LABEL' | translate }}</mat-label>
+            <input
+              matInput
+              formControlName="email"
+              type="email"
+              placeholder="vasa.email@primjer.com"
+              autocomplete="email"
+            />
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-error *ngIf="form.get('email')?.hasError('required')">
+              Email is required
+            </mat-error>
+            <mat-error *ngIf="form.get('email')?.hasError('email')">
+              Enter a valid email
+            </mat-error>
+          </mat-form-field>
+
+        
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>{{ 'AUTH.LOGIN.PASSWORD_LABEL' | translate }}</mat-label>
+            <input
+              matInput
+              formControlName="password"
+              [type]="hidePassword ? 'password' : 'text'"
+              placeholder="••••••••"
+              autocomplete="current-password"
+            />
+            <mat-icon matPrefix>lock</mat-icon>
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              (click)="hidePassword = !hidePassword"
+              [attr.aria-label]="'Hide password'"
+            >
+              <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+            </button>
+            <mat-error *ngIf="form.get('password')?.hasError('required')">
+              Password is required
+            </mat-error>
+          </mat-form-field>
+
+          <div class="form-row">
+            <mat-checkbox formControlName="rememberMe" color="primary">
+              {{ 'AUTH.LOGIN.REMEMBER_ME' | translate }}
+            </mat-checkbox>
+            <a href="#" class="forgot-link">Forgot your password?</a>
+          </div>
+
+        
+          <div class="actions">
+            <button
+              mat-raised-button
+              color="primary"
+              type="submit"
+              class="submit-button"
+              [disabled]="form.invalid || isLoading"
+            >
+              <ng-container *ngIf="!isLoading; else loadingTpl">
+                <mat-icon>login</mat-icon>
+                {{ 'AUTH.LOGIN.BUTTON' | translate }}
+              </ng-container>
+              <ng-template #loadingTpl>
+                <mat-progress-spinner
+                  mode="indeterminate"
+                  diameter="20"
+                  strokeWidth="3"
+                ></mat-progress-spinner>
+                <span>Login in progress...</span>
+              </ng-template>
+            </button>
+          </div>
+
+         
+          <div class="divider">
+            <span>or</span>
+          </div>
+
+        
+          <div class="register-prompt">
+            <span>Don't have an account?</span>
+            <a routerLink="/auth/register" class="register-link">Register</a>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+
+ Footer -->
+
+
+<div class="login-form-wrapper">
+
+  <!-- Title -->
+  <h1 class="login-title">
+    LOGIN
+  </h1>
+
+  <p class="login-subtitle">
+    Don’t have an account?
+    <a routerLink="/auth/register">Register</a>
+  </p>
+
+  <!-- Error -->
+  <div *ngIf="errorMessage" class="error-message">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <!-- FORM -->
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <!-- Email -->
+    <label class="field-label">Email</label>
+    <input
+      type="email"
+      class="auth-input"
+      formControlName="email"
+      placeholder=""
+      autocomplete="email"
+    />
+
+    <!-- Password -->
+    <label class="field-label">Password</label>
+    <input
+      type="password"
+      class="auth-input"
+      formControlName="password"
+      autocomplete="current-password"
+    />
+
+    <!-- Fitness center -->
+    <label class="field-label">Fitness center</label>
+    <div class="select-wrapper">
+      <select
+        class="auth-input"
+        formControlName="fitnessCenters"
+      >
+        <option value="" disabled selected>
+          Odaberite fitness centar
+        </option>
+
+        <option
+          *ngFor="let center of fitnessCenters"
+          [value]="center.id"
+        >
+          {{ center.name }}
+        </option>
+      </select>
+    </div>
+
+    <!-- Social login -->
+    <div class="social-login">
+  <span>Or sign in with</span>
+  
+  <div class="social-icons" style="display: flex; gap: 15px; justify-content: center; align-items: center; margin-top: 10px;">
+    
+    <asl-google-signin-button 
+      type="icon" 
+      size="medium" 
+      shape="circle">
+    </asl-google-signin-button>
+
+    <div class="social-icon facebook" (click)="signInWithFB()" style="cursor: pointer;">
+      f
+    </div>
+
+  </div>
+</div>
+
+    <!-- Submit -->
+    <button
+      type="submit"
+      class="login-button"
+      [disabled]="form.invalid || isLoading"
+    >
+      Sign in
+    </button>
+
+  </form>
+</div>
+
+
+    
+
+ 

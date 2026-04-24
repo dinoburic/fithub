@@ -1,0 +1,139 @@
+.checkout-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  color: #fff;
+}
+
+.page-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr; // Wider form, narrower summary
+  gap: 3rem;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr; // Na mobitelu jedna ispod druge
+  }
+}
+
+/* --- FORMA --- */
+.form-section {
+  h3 {
+    margin-bottom: 1.5rem;
+    color: #f97316;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+
+  input, textarea {
+    width: 100%;
+    padding: 12px;
+    background-color: #121212;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+
+    &:focus {
+      outline: none;
+      border-color: #f97316;
+    }
+  }
+
+  .error {
+    color: #ef4444;
+    font-size: 0.8rem;
+    margin-top: 4px;
+  }
+}
+
+.form-row {
+  display: flex;
+  gap: 2rem;
+  
+  .half { flex: 1; }
+  .third { flex: 1; }
+}
+
+/* --- SUMMARY --- */
+.summary-card {
+  background-color: #121212;
+  border: 1px solid #333;
+  padding: 20px;
+  border-radius: 12px;
+  position: sticky;
+  top: 20px; // Da prati skrolanje
+
+  h3 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  color: #ccc;
+
+  &.total {
+    color: #fff;
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+  }
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid #333;
+  margin: 15px 0;
+}
+
+.place-order-btn {
+  width: 100%;
+  background-color: #f97316;
+  color: #fff;
+  border: none;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+
+  &:hover {
+    background-color: #ea580c;
+  }
+
+  &.disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+}
+
+.secure-text {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 1rem;
+}

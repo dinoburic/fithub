@@ -1,0 +1,47 @@
+.auth-page {
+  height: 100vh;
+  background: url('/images/auth-bg.jpg') no-repeat center/cover;
+  position: relative;
+  color: #fff;
+}
+
+.auth-bg {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.65);
+  
+}
+
+.back-link {
+  position: absolute;
+  top: 24px;
+  left: 32px;
+  z-index: 2;
+  color: #fff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.auth-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  height: calc(100vh - 80px);
+}
+
+.auth-left,
+.auth-right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+
+.brand-text {
+  margin-top: 12px;
+  font-size: 32px;
+  font-weight: bold;
+  color: #ff8a2a;
+}

@@ -1,0 +1,68 @@
+<div class="cart-page">
+
+  <h1 class="page-title">Cart</h1>
+
+  <div class="cart-layout">
+
+    
+
+    <!-- LEFT -->
+    <div class="cart-items">
+
+      <div *ngFor="let item of cartItems">
+    <app-cart-item 
+      [item]="item" 
+      [isSaved]="false"
+      (remove)="remove(item)"
+      (saveForLater)="saveForLater(item)">
+    </app-cart-item>
+   </div>
+
+      <button class="clear" (click)="clearAll()">
+        Clear all items
+      </button>
+
+    </div>
+
+    <!-- RIGHT -->
+    <div class="summary-card">
+
+      <h2>Order Summary</h2>
+
+      <div class="row">
+        <span>Subtotal ({{ cartItems.length }} items)</span>
+        <span>€{{ subtotal }}</span>
+      </div>
+
+      <div class="row">
+        <span>Discount</span>
+        <span>€0</span>
+      </div>
+
+      <hr>
+
+      <div class="row total">
+        <span>Total</span>
+        <span>€{{ subtotal }}</span>
+      </div>
+
+      <button class="checkout-btn" [routerLink]="['/client/checkout']" [disabled]="cartItems.length === 0">
+        Proceed to Checkout →
+      </button>
+
+    </div>
+
+  </div>
+
+  <h3 *ngIf="savedItems.length > 0" style="margin-top: 2rem;">Saved for Later</h3>
+
+<div *ngFor="let item of savedItems">
+  <app-cart-item 
+      [item]="item" 
+      [isSaved]="true" 
+      (remove)="remove(item)"
+      (moveToCart)="moveToCart(item)">
+  </app-cart-item>
+</div>
+
+</div>

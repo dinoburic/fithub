@@ -1,0 +1,81 @@
+<div class="login-form-wrapper">
+  <h1 class="login-title">Sign up</h1>
+  <p class="login-subtitle">
+    Already have an account? <a routerLink="/auth/login">Log in</a>
+  </p>
+
+  <div *ngIf="errorMessage" class="error-message">
+    <mat-icon>error_outline</mat-icon>
+    <span>{{ errorMessage }}</span>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="form-grid">
+      
+      <div class="form-group">
+        <label class="field-label">First Name</label>
+        <input type="text" class="auth-input" formControlName="firstName" />
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">Last Name</label>
+        <input type="text" class="auth-input" formControlName="lastName" />
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">Email</label>
+        <input type="email" class="auth-input" formControlName="email" />
+      </div>
+
+      <div class="form-group">
+        <label class="field-label">Gender</label>
+        <div class="select-wrapper">
+          <select class="auth-input" formControlName="gender">
+            <option value="" disabled selected>Select gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group full-column">
+        <label class="field-label">Fitness center</label>
+        <div class="select-wrapper">
+          <select class="auth-input" formControlName="fitnessCenter">
+            <option value="" disabled selected>Choose fitness center</option>
+            <option *ngFor="let center of fitnessCenters" [value]="center.id">
+              {{ center.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group full-column">
+        <label class="field-label passlabel">Password</label>
+        <input type="password" class="auth-input" formControlName="password" />
+        <app-password-strength-meter [password]="form.get('password')?.value ?? ''"></app-password-strength-meter>
+      </div>
+    </div>
+
+    <div class="form-check">
+      <input type="checkbox" id="isTrainer" class="form-check-input" formControlName="isTrainer" />
+      <label for="isTrainer" class="form-check-label">I am a trainer</label>
+    </div>
+<!--
+    <div class="social-login">
+      <span>Or sign up with</span>
+      <div class="social-icons">
+        <div class="social-icon">G</div>
+        <div class="social-icon">f</div>
+      </div>
+    </div>
+-->
+    <div class="captcha-container">
+      <re-captcha (resolved)="resolved($any($event))"></re-captcha>
+    </div>
+
+    <button type="submit" class="login-button" [disabled]="form.invalid || isLoading">
+      Sign up
+    </button>
+  </form>
+</div>

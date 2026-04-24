@@ -1,0 +1,29 @@
+<div class="cart-page">
+
+  <h1 class="page-title">My Wishlist</h1>
+
+  <div *ngIf="isLoading" style="text-align: center; color: #aaa;">
+    Loading your favorites...
+  </div>
+
+  <div *ngIf="!isLoading && wishlistItems.length === 0" style="text-align: center; margin-top: 50px; color: #aaa;">
+    <h3>Your wishlist is empty</h3>
+    <p>Explore our programs and add your favorites here!</p>
+  </div>
+
+  <div class="wishlist-layout" *ngIf="!isLoading && wishlistItems.length > 0">
+    <div class="cart-items">
+      
+      <div *ngFor="let item of wishlistItems">
+        <app-wishlist-item 
+          [item]="item" 
+          [isInCart]="checkIfInCart(item.fitnessPlanID)"
+          (remove)="onRemoveFromWishlist($event)"
+          (addToCart)="onAddToCart($event)">
+        </app-wishlist-item>
+      </div>
+
+    </div>
+  </div>
+
+</div>

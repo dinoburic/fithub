@@ -1,0 +1,37 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace FitHub.Application.Modules.Users.Commands.Update
+{
+    public sealed class UpdateUserCommand : IRequest<Unit>
+    {
+        [JsonIgnore]
+        public int Id { get; set; }
+        public string? Name { get; set; }
+        
+        public string? Surname { get; set; }
+        
+        public int? CenterID { get; set; }
+       
+        public bool? Gender { get; set; }
+        
+        public string? Email { get; set; }
+        
+        public string? Password { get; set; }
+        
+        public string? Status { get; set; }
+        public string? Address { get; set; }
+        public string? PhoneNumber { get; set; }
+        
+        public int? RoleID { get; set; }
+        public int? BadgeID { get; set; }
+        public float? Weight { get; set; }
+        public float? Height { get; set; }
+        public int? FitnessPlanTypeID { get; set; }
+    }
+
+}

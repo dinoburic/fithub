@@ -1,0 +1,150 @@
+/* --- MAIN CONTAINER (Full-screen fix) --- */
+.success-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh; /* Takes 100% of viewport height */
+  width: 100%;
+  background-color: #0f0f0f; /* Dark page background */
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+/* --- CARD --- */
+.success-card {
+  background-color: #1e1e1e; /* Slightly lighter than background */
+  border: 1px solid #333;
+  padding: 50px 40px;
+  border-radius: 20px;
+  text-align: center;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6); /* Duboka sjena */
+  animation: popIn 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* Bounce efekt */
+}
+
+/* --- ICON (Animated checkmark) --- */
+.icon-circle {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 30px auto;
+  position: relative;
+}
+
+.checkmark {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #22c55e;
+  animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.checkmark__circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #22c55e;
+  fill: none;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.checkmark__check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+/* --- TEKST --- */
+h1 {
+  font-size: 2.2rem;
+  margin: 0 0 10px 0;
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+.subtitle {
+  color: #a1a1aa;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* --- TICKET (Order Number) --- */
+.order-ticket {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed #444;
+  border-radius: 12px;
+  padding: 15px 25px;
+  display: inline-block;
+  margin-bottom: 25px;
+}
+
+.ticket-header {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #6b7280;
+  margin-bottom: 5px;
+}
+
+.ticket-number {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #f97316; /* Your orange color */
+  letter-spacing: 1px;
+}
+
+.email-note {
+  font-size: 0.9rem;
+  color: #52525b;
+  margin-bottom: 35px;
+}
+
+/* --- GUMB --- */
+.primary-btn {
+  display: inline-block;
+  background-color: #f97316;
+  color: white;
+  padding: 14px 40px;
+  border-radius: 50px; /* More rounded button */
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+
+  &:hover {
+    background-color: #ea580c;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+/* --- KEYFRAMES --- */
+@keyframes popIn {
+  0% { transform: scale(0.5); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes stroke {
+  100% { stroke-dashoffset: 0; }
+}
+
+@keyframes scale {
+  0%, 100% { transform: none; }
+  50% { transform: scale3d(1.1, 1.1, 1); }
+}
+
+@keyframes fill {
+  100% { box-shadow: inset 0px 0px 0px 50px #22c55e; }
+}

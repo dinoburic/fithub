@@ -1,0 +1,458 @@
+
+$orange-primary: #ff8235;
+$orange-hover: #ff9654;
+$bg-dark: #000000;
+$text-light: #ffffff;
+$text-muted: #d1d1d1;
+
+.hero {
+  background-color: $bg-dark;
+  color: $text-light;
+  position: relative;
+  padding: 4% 5% 0 5%; // Increased top padding because of navbar
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 85vh;
+
+  .hero-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 2;
+
+    @media (max-width: 900px) {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+}
+
+/* === LIJEVI TEKSTUALNI DIO === */
+.hero-text {
+  flex: 1;
+  max-width: 600px;
+  z-index: 3;
+
+  .hero-title {
+    font-size: 75px; // Very large font as in the design
+    font-weight: 900;
+    line-height: 1;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+    text-transform: none;
+    margin-top: 2% ;
+
+    span {
+      display: block; // Da bi "Just Results" bio u novom redu
+    }
+
+    @media (max-width: 1100px) { font-size: 64px; }
+    @media (max-width: 768px) { font-size: 48px; }
+  }
+
+  .hero-subtitle {
+    font-size: 18px;
+    line-height: 1.6;
+    color: $text-muted;
+    margin-bottom: 40px;
+    max-width: 480px;
+
+    @media (max-width: 900px) { margin: 0 auto 30px auto; }
+  }
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 20px;
+
+  @media (max-width: 900px) { justify-content: center; }
+
+  button {
+    padding: 16px 36px;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 8px; // Blago zaobljeni uglovi
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+}
+
+.btn-primary {
+  background: $orange-primary;
+  color: #fff;
+  border: none;
+  box-shadow: 0 4px 15px rgba($orange-primary, 0.3);
+
+  &:hover {
+    background: $orange-hover;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: $orange-primary;
+  border: 1px solid rgba($orange-primary, 0.5);
+
+  &:hover {
+    background: rgba($orange-primary, 0.1);
+    border-color: $orange-primary;
+  }
+}
+
+/* === DESNA SLIKA === */
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  position: relative;
+  margin-left: 5%;  
+  z-index: 101101;
+  
+  img {
+    max-width: 110%; // Image is slightly larger to create depth
+    height: auto;
+    filter: contrast(1.1) brightness(0.9);
+    z-index: 101101;
+
+    mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 75%, transparent 100%);
+    
+    @media (max-width: 900px) {
+      max-width: 80%;
+      margin-top: 40px;
+    }
+  }
+}
+
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 250px; 
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(68, 30, 8, 0.4) 40%, // Muted brown-orange
+    rgba(255, 130, 53, 0.25) 85%, // Brighter orange near bottom
+   
+  );
+  pointer-events: none;
+  z-index: 101102; 
+}
+
+/* CHATBOT SECTION */
+
+$orange-glow: rgba(255, 130, 53, 0.25);
+$bg-black: #000000;
+
+.chatbot-section {
+  background-color: $bg-black;
+  padding: 80px 0;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 350px; 
+    background: linear-gradient(
+      
+      $orange-glow 0%, 
+      rgba(255, 130, 53, 0.05) 50%, 
+      transparent 80%
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .chatbot-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.chatbot-header {
+  text-align: center;
+  margin-bottom: 60px;
+
+  .chatbot-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -1px;
+  }
+
+  .chatbot-subtitle {
+    font-size: 18px;
+    color: #aaa;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+}
+
+.chatbot-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
+}
+
+.chatbot-visual {
+  flex: 1;
+  position: relative;
+  
+  img {
+    width: 100%;
+    border-radius: 20px;
+    filter: brightness(0.65) contrast(1.1);
+    mask-image: linear-gradient(to right, black 80%, transparent 100%); 
+  }
+}
+
+.chatbot-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+
+  .placeholder-bot {
+    width: 100%;
+    max-width: 450px;
+    height: 550px;
+    background: #121212; 
+    border-radius: 24px;
+    border: 1px solid #222;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* RESULTS */
+
+.results-section {
+  background-color: #000;
+  padding: 160px 0; // Increased padding for more space
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+
+  // Glavni gradijent koji stvara suptilno osvjetljenje iza utega
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -5%; // Pomaknuto udesno
+    transform: translateY(-50%);
+    width: 800px;
+    height: 600px;
+    // Puno manji opacity (0.04 umjesto 0.08) za tamniji izgled
+    background: radial-gradient(circle, rgba(255, 130, 53, 0.04) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .results-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start; // Tekst ostaje lijevo
+  }
+}
+
+.results-text {
+  max-width: 600px;
+  position: relative;
+  z-index: 10;
+
+  .results-title {
+    font-size: 80px; // Larger font as in the design
+    font-weight: 900;
+    line-height: 1.05;
+    color: #fff;
+    margin-bottom: 24px;
+    letter-spacing: -3px;
+
+    @media (max-width: 768px) {
+      font-size: 50px;
+      letter-spacing: -1px;
+    }
+  }
+
+  .results-subtitle {
+    font-size: 22px;
+    color: #888; // Tamnija siva za tekst
+    line-height: 1.5;
+    margin-bottom: 40px;
+    max-width: 480px;
+  }
+}
+
+.results-visual {
+  position: absolute; // Key to matching the design look
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  pointer-events: none;
+  
+  .dumbbells-img {
+    height: 110%; // Slika je velika i izlazi iz okvira
+    width: auto;
+    object-fit: contain;
+    // Brightness drastically reduced (0.1) so dumbbells barely emerge from darkness
+    filter: brightness(0.55) contrast(1.1);
+    mask-image: linear-gradient(to left, black 80%, transparent 100%); 
+    
+    @media (max-width: 900px) {
+      opacity: 0.3; // Skoro nevidljivi na mobitelu da ne smetaju tekstu
+      height: 80%;
+    }
+  }
+}
+
+/* Redefine primary button if it is not already global */
+.btn-primary {
+  background: #ff8235;
+  color: #fff;
+  border: none;
+  padding: 16px 36px;
+  font-size: 18px;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: 0.3s;
+
+  &:hover {
+    background: #ff9654;
+    transform: translateY(-2px);
+  }
+}
+
+/* CARDS */
+
+$orange: #ff8235;
+$text-light: #ffffff;
+$text-muted: #d1d1d1;
+
+.plans-section {
+  background-color: #000;
+  padding: 100px 0;
+  color: $text-light;
+
+  .plans-container {
+    max-width: 1250px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.plans-header {
+  text-align: center;
+  margin-bottom: 60px;
+  max-width: 800px;
+
+  .plans-title {
+    font-size: 42px; 
+    font-weight: 700;
+    margin-bottom: 20px;
+    letter-spacing: -1px;
+
+    @media (max-width: 768px) {
+      font-size: 32px;
+    }
+  }
+
+  .plans-subtitle {
+    font-size: 18px;
+    color: $text-muted;
+    line-height: 1.5;
+    opacity: 0.9;
+  }
+}
+
+.plans-grid-wrapper {
+  width: 100%;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+  
+  .cards-placeholder {
+    padding: 100px 0;
+    text-align: center;
+    border: 1px dashed #333; 
+    color: #444;
+  }
+}
+
+.plans-footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+  margin-top: 20px;
+
+  .discover-link {
+    color: $orange;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    span {
+      font-size: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    &:hover {
+      color: lighten($orange, 10%);
+      
+      span {
+        transform: translateX(5px);
+      }
+    }
+  }
+}

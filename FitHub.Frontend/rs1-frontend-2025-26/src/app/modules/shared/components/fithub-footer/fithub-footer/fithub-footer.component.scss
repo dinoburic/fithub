@@ -1,0 +1,19 @@
+.app-footer {
+  height: 80px;
+  background: #3c3c3c;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40px;
+  color: #fff;
+
+  img {
+    height: 36px;
+  }
+
+  .footer-text {
+    text-align: right;
+    font-size: 14px;
+    opacity: 0.8;
+  }
+}

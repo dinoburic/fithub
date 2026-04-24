@@ -1,0 +1,190 @@
+$orange: #ff8235;
+$nav-bg: rgba(20, 20, 20, 0.7); // Semi-transparent dark color
+
+.navbar {
+  position: absolute; // Postavlja navbar preko hero sekcije
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%; // Width as shown in the design
+  max-width: 1200px;
+  z-index: 1000;
+  
+  // Stakleni efekt i zaobljeni rubovi
+  background: $nav-bg;
+  backdrop-filter: blur(10px); // Zamagljuje pozadinu iza navbara
+  padding: 10px 24px;
+  border-radius: 50px; // Jako zaobljeni rubovi cijelog bara
+  border: 1px solid rgba(255, 255, 255, 0.05);
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.logo {
+  img {
+    height: 32px;
+    display: block;
+  }
+}
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+
+  a {
+    color: #bcbcbc;
+    font-size: 14px;
+    text-decoration: none;
+    font-weight: 400;
+    transition: 0.3s;
+
+    &:hover {
+      color: #fff;
+    }
+
+    &.active {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  cursor: pointer;
+
+  i {
+    font-size: 16px;
+    opacity: 0.8;
+  }
+
+  input {
+    display: none; // Design shows only the search icon; input usually opens on click
+  }
+}
+
+.btn-register {
+  background: $orange;
+  color: #fff;
+  border: none;
+  padding: 8px 24px;
+  border-radius: 8px; // Less rounded corners for button than for bar
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+
+  &:hover {
+    background: lighten($orange, 5%);
+    transform: translateY(-1px);
+  }
+}
+
+.cart-btn {
+  position: relative; /* REQUIRED: circle positions relative to button */
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #fff; 
+  padding: 8px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
+.badge {
+  position: absolute;
+  top: 0;       
+  right: 0;     
+  background-color: #ef4444; 
+  color: white;
+  font-size: 0.75rem; 
+  font-weight: bold;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #121212; 
+  /* Move badge exactly to top-right corner */
+  transform: translate(25%, -25%);
+} /* <-- OVDJE JE FALILA ZAGRADA ZA ZATVARANJE! */
+
+
+/* Buttons are now unrestricted and styles will apply */
+
+.wishlist-btn {
+  background: transparent !important; /* Forsira uklanjanje defaultne sive/bijele pozadine */
+  border: none;
+  color: #fff; 
+  font-size: 1.5rem; /* Matched with cart-btn */
+  cursor: pointer;
+  margin-right: 15px; 
+  padding: 8px; /* Matched with cart-btn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease-in-out, transform 0.2s;
+
+  &:hover {
+    color: $orange; 
+    transform: scale(1.1); 
+  }
+}
+
+.logout-btn {
+  background: transparent !important; /* Forsira uklanjanje defaultne sive/bijele pozadine */
+  border: none;
+  color: #fff; 
+  font-size: 1.5rem; /* Matched with cart-btn */
+  cursor: pointer;
+  margin-left: 1rem;
+  padding: 8px; /* Matched with cart-btn */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s;
+
+  &:hover {
+    color: $orange; 
+  }
+}
+
+// Responsive behavior
+@media (max-width: 900px) {
+  .navbar {
+    width: 95%;
+    top: 10px;
+  }
+  
+  .nav-menu {
+    display: none; 
+  }
+}

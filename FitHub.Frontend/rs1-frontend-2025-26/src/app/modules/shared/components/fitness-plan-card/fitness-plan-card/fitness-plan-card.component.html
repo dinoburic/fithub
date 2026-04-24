@@ -1,0 +1,47 @@
+<div class="plan-card">
+  <div class="card-image-wrapper">
+    <!-- <img [src]="'assets/images/plan-' + fitnessPlan.PlanID + '.jpg'" [alt]="fitnessPlan.Title" class="plan-image"> -->
+     <img [src]="'/images/planphoto.jpg'" [alt]="fitnessPlan.title" class="plan-image">
+    <button class="wishlist-btn" (click)="toggleWishlist($event)">
+      <i class="fa-heart" [ngClass]="isFavorite ? 'fas filled-heart' : 'far empty-heart'"></i>
+    </button>
+  </div>
+
+  <div class="card-content">
+    <h3 class="plan-title">{{ fitnessPlan.title }}</h3>
+
+    <div class="plan-stats">
+      <div class="stat-item">
+        <i class="far fa-clock"></i>
+        <span>{{ fitnessPlan.dailyDurationInMinutes }}min / day · {{ fitnessPlan.durationInWeeks }} weeks</span>
+      </div>
+      <div class="stat-item">
+        <i class="fas fa-bolt"></i>
+        <span>{{ fitnessPlan.difficulty }}</span>
+      </div>
+      <div class="stat-item">
+        <i class="far fa-star"></i>
+        <span>{{ fitnessPlan.averageRating }} ({{ fitnessPlan.reviewsNumber }} reviews)</span>
+      </div>
+    </div>
+
+    <p class="plan-description">{{ fitnessPlan.description }}</p>
+
+    <div class="plan-price">€{{ fitnessPlan.price }}</div>
+
+    <button class="add-to-cart-btn" 
+            [class.in-cart]="isInCart" 
+            [disabled]="isInCart" 
+            (click)="addToCart(); $event.stopPropagation()">
+      
+      <ng-container *ngIf="!isInCart">
+        Add to Cart <i class="fas fa-shopping-bag"></i>
+      </ng-container>
+      
+      <ng-container *ngIf="isInCart">
+        Already in cart <i class="fas fa-check"></i>
+      </ng-container>
+
+    </button>
+  </div>
+</div>

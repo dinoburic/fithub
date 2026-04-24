@@ -1,0 +1,88 @@
+<div class="program-details-container" *ngIf="program">
+  <div class="hero-section">
+    <img [src]="placeholderImage" [alt]="program.title" class="hero-image" />
+  </div>
+
+  <div class="content-grid">
+    <div class="main-content">
+      <h1 class="program-title">{{ program.title }}</h1>
+      <div class="program-meta">
+ 
+        <span><i class="icon-clock"></i> {{ program.dailyDurationInMinutes }} min / day</span>
+  <span class="dot-separator">•</span>
+  <span>{{ program.durationInWeeks }} weeks</span>
+  <span *ngIf="program.difficulty"><i class="icon-bolt"></i> {{ program.difficulty }}</span>
+  
+  <span class="rating" *ngIf="program.averageRating">
+    <i class="icon-star solid"></i> {{ program.averageRating }} 
+    <span class="reviews-count">• {{ program.reviewsNumber }} reviews</span>
+  </span>
+</div>
+
+      <div class="action-row">
+  <div class="price">€{{ program.price }}</div>
+  <div class="actions">
+    
+    <button class="btn-primary" 
+            [class.in-cart]="isInCart" 
+            [disabled]="isInCart" 
+            (click)="onAddToCart()">
+      <ng-container *ngIf="!isInCart">
+        Add to Cart <i class="icon-cart"></i>
+      </ng-container>
+      <ng-container *ngIf="isInCart">
+        Already in cart
+      </ng-container>
+    </button>
+
+    <button class="wishlist-btn" (click)="toggleWishlist()">
+      <i class="fa-heart" [ngClass]="isFavorite ? 'fas filled-heart' : 'far empty-heart'"></i>
+    </button>
+  </div>
+</div>
+
+      <div class="program-description" [innerHTML]="program.description"></div>
+
+      <div class="social-share">
+        <i class="icon-share"></i>
+        <i class="icon-facebook"></i>
+        <i class="icon-pinterest"></i>
+        <i class="icon-email"></i>
+      </div>
+
+     <app-program-reviews 
+        *ngIf="program" 
+        [planId]="program.planID" 
+        [centerId]="program.centerId">
+    </app-program-reviews>
+    </div>
+
+    <aside class="sidebar">
+      <h3 class="sidebar-title">Related Content</h3>
+      
+      <div class="related-list">
+        <div class="related-card" *ngFor="let related of relatedPrograms">
+          <div class="related-image-container">
+            <img [src]="placeholderImage" [alt]="related.title">
+            <button class="btn-wishlist-small"><i class="icon-heart"></i></button>
+          </div>
+          <div class="related-info">
+            <h4>{{ related.title }}</h4>
+            <div class="related-meta">
+              <span><i class="icon-clock"></i> {{ related.dailyDurationInMinutes }} min</span>
+              <span *ngIf="related.difficulty"><i class="icon-bolt"></i> {{ related.difficulty }}</span>
+            </div>
+            <div class="related-rating" *ngIf="related.averageRating">
+              <i class="icon-star solid"></i> {{ related.averageRating }} ({{ related.reviewsNumber }} reviews)
+            </div>
+            <p class="related-desc">{{ related.description }}</p>
+            <div class="related-price-row">
+              <span class="related-price">€{{ related.price }}</span>
+              <button class="btn-primary-small">Add <i class="icon-cart"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</div>

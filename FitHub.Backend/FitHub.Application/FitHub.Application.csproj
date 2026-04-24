@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="12.0.0" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.73.0" />
+    <PackageReference Include="MediatR" Version="12.5.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.21" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Core" Version="8.0.21" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="8.0.21" />
+    <PackageReference Include="Microsoft.Extensions.ML" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML" Version="5.0.0" />
+    <PackageReference Include="Microsoft.ML.Recommender" Version="0.23.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FitHub.Domain\FitHub.Domain.csproj" />
+    <ProjectReference Include="..\FitHub.Domain\FitHub.Domain.csproj" />
+    <ProjectReference Include="..\FitHub.Shared\FitHub.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\AIChat\Queries\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,82 @@
+.cart-card {
+  background: linear-gradient(145deg, #111, #000);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 20px;
+  box-shadow: 0 0 40px rgba(255,120,0,0.08);
+
+  .image-container img {
+    width: 90px;
+    border-radius: 14px;
+    object-fit: cover;
+  }
+
+  .details {
+    flex: 1;
+
+    .title {
+      margin: 0;
+      font-size: 18px;
+      color: white;
+    }
+
+    .meta {
+      color: #aaa;
+      margin: 6px 0;
+      font-size: 14px;
+    }
+
+    .price {
+      color: #ff7a00;
+      font-size: 20px;
+      font-weight: 600;
+    }
+  }
+
+  .actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    .action-btn {
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s ease-in-out;
+    }
+
+    .delete-btn {
+      color: #aaa;
+      &:hover {
+        color: #ff4747; // Crvena na hover za brisanje
+      }
+    }
+
+    .cart-btn {
+      background: linear-gradient(135deg, #ff7a00, #ff9f40);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      gap: 8px;
+
+      &:hover:not(:disabled) {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(255,120,0,0.3);
+      }
+
+      &.in-cart {
+        background: #333; // Gray color when already in cart
+        color: #888;
+        cursor: not-allowed;
+      }
+    }
+  }
+}

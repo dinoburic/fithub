@@ -1,0 +1,98 @@
+
+
+<div class="programs-page">
+
+  <!-- ===== Left sidebar (Filters) ===== -->
+  <aside class="filters-panel">
+
+    <!-- Search -->
+    <div class="search-box">
+      <input
+        type="text"
+        placeholder="Search..."
+        (input)="onSearch($event)"
+        [value]="searchQuery"
+      />
+    </div>
+
+    <!-- Filter groups -->
+    <div class="filters-list">
+      <app-filter-group
+        *ngFor="let group of filterConfigs"
+        [group]="group"
+        (changed)="applyFilters()">
+      </app-filter-group>
+    </div>
+
+  </aside>
+
+
+  <!-- ===== Main content area ===== -->
+  <main class="catalog-content">
+
+    <!-- Page title -->
+    <h1 class="page-title">Workout Programs</h1>
+
+    <!-- Top bar: ordering + results count -->
+    <div class="catalog-toolbar">
+
+      <div class="order-box">
+        <label>Order by</label>
+        <select (change)="onOrderChange($event)">
+          <option value="relevance">Relevance</option>
+          <option value="price_asc">Price — Low to High</option>
+          <option value="price_desc">Price — High to Low</option>
+          <option value="date_desc">Newest</option>
+          <option value="date_asc">Oldest</option>
+        </select>
+      </div>
+
+      <div class="results-count">
+        {{ filteredWorkouts.length || 0 }} results
+      </div>
+
+    </div>
+
+    <div class="recommendations-section" *ngIf="recommendedPlans.length > 0">
+  
+  <div class="section-header">
+    <h2><i class="fas fa-magic" style="color: #f97316;"></i> Recommended for You</h2>
+    <p>Based on your wishlist, reviews, and programs you might like.</p>
+  </div>
+
+  <div class="plans-grid">
+    <app-fitness-plan-card 
+      *ngFor="let plan of recommendedPlans" 
+      [fitnessPlan]="plan"
+      (click)="openProgram(plan.planID)" style="cursor: pointer">
+    </app-fitness-plan-card>
+  </div>
+  
+  <hr class="divider">
+</div>
+
+
+    <!-- ===== Grid of plans ===== -->
+    <section class="plans-grid">
+
+      <!-- Empty state -->
+      <div *ngIf="filteredWorkouts.length === 0" class="empty-state">
+        No workout programs match your filters.
+      </div>
+
+      <!-- Cards -->
+      <app-fitness-plan-card
+        *ngFor="let plan of filteredWorkouts"
+        [fitnessPlan]="plan"
+        (click)="openProgram(plan.planID)" style="cursor: pointer">
+      </app-fitness-plan-card>
+
+    </section>
+
+
+    <!-- ===== Pagination (placeholder) ===== -->
+    
+
+  </main>
+
+</div>

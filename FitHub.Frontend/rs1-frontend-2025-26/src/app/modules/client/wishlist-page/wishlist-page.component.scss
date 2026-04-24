@@ -1,0 +1,24 @@
+.cart-page {
+  max-width: 900px; // Slightly narrower than cart because we don't have right "Summary" column
+  margin: 90px auto;
+  padding: 0 20px;
+  color: white;
+
+  h1 {
+    font-size: 42px;
+    margin-bottom: 40px;
+  }
+}
+
+.page-title {
+  text-align: center;
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+
+.wishlist-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}

@@ -1,0 +1,60 @@
+<header class="navbar">
+  <div class="container">
+
+    <div class="nav-left">
+      <a routerLink="/" class="logo">
+        <img src="logo.svg" alt="FitHub">
+      </a>
+
+      <nav class="nav-menu">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+          Home
+        </a>
+        <a routerLink="/programs" routerLinkActive="active">Programs</a>
+        <a routerLink="/blog" routerLinkActive="active">Blog</a>
+
+        <a routerLink="/about" routerLinkActive="active">About us</a>
+      </nav>
+    </div>
+
+    <div class="nav-right">
+
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search">
+      </div>
+
+      <ng-container *ngIf="isAuthenticated()">
+
+        <button class="wishlist-btn" routerLink="/client/wishlist" title="My Wishlist">
+          <i class="far fa-heart"></i>
+        </button>
+
+        <button class="cart-btn" routerLink="/client/cart">
+          <i class="fas fa-shopping-bag"></i>
+          <span class="badge" *ngIf="(cartCount$ | async) as count">
+            {{ count }}
+          </span>
+        </button>
+
+        <button class="logout-btn" (click)="logout()" title="Logout">
+          <i class="fas fa-sign-out-alt"></i>
+        </button>
+        <!---
+        <button class="profile-btn" routerLink="/profile">
+          <i class="fas fa-user-circle"></i>
+        </button>
+      -->
+      </ng-container>
+
+      <ng-container *ngIf="!isAuthenticated()">
+        <button class="btn-register" routerLink="/auth/register">
+          Register
+        </button>
+      </ng-container>
+
+
+
+    </div>
+  </div>
+</header>

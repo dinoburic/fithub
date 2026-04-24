@@ -1,0 +1,363 @@
+// Color variables based on design
+$bg-main: #0a0a0a;
+$bg-card: #161616;
+$bg-input: #222222;
+$text-primary: #ffffff;
+$text-secondary: #a0a0a0;
+$accent-color: #f97316; // FitHub orange
+$border-color: #333333;
+
+.wishlist-btn {
+  background-color: transparent; // Transparent background
+  border: 1px solid #f97316;     // Orange border (remove this line if you don't want a border)
+  color: #f97316;                // Orange heart color
+  border-radius: 6px;            // Slightly rounded corners to match Add to Cart button
+  
+  /* Dimensions - adjust height to match Add to Cart */
+  height: 48px;                  
+  width: 48px;                   
+  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.4rem;             // Heart size
+  transition: all 0.2s ease-in-out;
+  margin-left: 0.5rem;           // Spacing between Add to Cart and heart
+
+  &:hover {
+    // On hover we add a very light transparent orange background for better click feel
+    background-color: rgba(249, 115, 22, 0.1); 
+    transform: scale(1.05);      // Slightly enlarges
+  }
+
+  &:active {
+    transform: scale(0.95);      // Smanji se na klik
+  }
+
+  // Just in case, ensure both heart versions are orange
+  .filled-heart, .empty-heart {
+    color: #f97316; 
+  }
+}
+
+.program-details-container {
+  background-color: $bg-main;
+  color: $text-primary;
+  font-family: 'Inter', sans-serif; // Adjust to project font
+  padding: 2rem 5%;
+  max-width: 1400px;
+  margin: 5% auto;
+
+  // Ikonice placeholder (prilagodi svojim FontAwesome/Material klasama)
+  i {
+    color: $text-secondary;
+    &.icon-star.solid { color: $accent-color; }
+    &.icon-cart { color: inherit; }
+  }
+}
+
+.hero-section {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  .hero-image {
+    width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 3rem;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr; // Prelazak u jednu kolonu na tabletima i mobitelima
+  }
+}
+
+.main-content {
+  .program-title {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+
+  .program-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    color: $text-secondary;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+    align-items: center;
+
+    .dot-separator {
+      margin: 0 0.5rem;
+    }
+    
+    .rating {
+      color: $text-primary;
+      i { color: $accent-color; }
+      .reviews-count { color: $text-secondary; font-size: 0.85rem;}
+    }
+  }
+
+  .action-row {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+
+    .price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: $accent-color;
+    }
+
+    .actions {
+      display: flex;
+      gap: 1rem;
+
+      .btn-primary {
+        background-color: $accent-color;
+        color: #fff;
+        border: none;
+        padding: 0.8rem 2.5rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: opacity 0.2s;
+
+        &:hover { opacity: 0.9; }
+      }
+
+      .btn-icon-outline {
+        background: transparent;
+        border: 1px solid $accent-color;
+        color: $accent-color;
+        width: 45px;
+        height: 45px;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        
+        i { color: $accent-color; }
+        &:hover { background-color: rgba($accent-color, 0.1); }
+      }
+    }
+  }
+
+  .program-description {
+    color: #cccccc;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+
+    // Styles for formatted text (if HTML contains p, ul, li)
+    ::ng-deep {
+      p { margin-bottom: 1rem; }
+      ul { padding-left: 1.5rem; margin-bottom: 1rem; }
+      li { margin-bottom: 0.5rem; }
+    }
+  }
+
+  .social-share {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    
+    i {
+      font-size: 1.2rem;
+      cursor: pointer;
+      &:hover { color: $text-primary; }
+    }
+  }
+
+  .reviews-section {
+    h2 { font-size: 2rem; margin-bottom: 1rem; }
+    
+    .reviews-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+      
+      .rating-large {
+        font-size: 1.5rem;
+        color: $accent-color;
+        i { color: $accent-color; }
+      }
+      .reviews-total { color: $text-secondary; }
+    }
+
+    .add-review-box {
+      margin-bottom: 2rem;
+      input {
+        width: 100%;
+        background-color: $bg-input;
+        border: 1px solid $border-color;
+        color: $text-primary;
+        padding: 1rem;
+        border-radius: 6px;
+        outline: none;
+        &:focus { border-color: $accent-color; }
+      }
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      display: flex;
+      gap: 1.5rem;
+      background-color: $bg-card;
+      padding: 1.5rem;
+      border-radius: 8px;
+
+      .review-avatar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 80px;
+
+        img {
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+        .review-name { font-size: 0.85rem; text-align: center; }
+      }
+
+      .review-content {
+        .review-stars { margin-bottom: 0.5rem; }
+        .review-text { color: #cccccc; line-height: 1.5; font-size: 0.95rem; }
+      }
+    }
+
+    .btn-load-more {
+      background: transparent;
+      color: $text-primary;
+      border: none;
+      margin-top: 2rem;
+      cursor: pointer;
+      font-weight: 600;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+      &:hover { text-decoration: underline; }
+    }
+  }
+}
+
+// Sidebar (Related Content)
+.sidebar {
+  .sidebar-title {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .related-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .related-card {
+    background-color: $bg-card;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+
+    .related-image-container {
+      position: relative;
+      img {
+        width: 100%;
+        height: 180px;
+        object-fit: cover;
+        display: block;
+      }
+      .btn-wishlist-small {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: transparent;
+        border: none;
+        color: $text-secondary;
+        font-size: 1.2rem;
+        cursor: pointer;
+        &:hover { color: $accent-color; }
+      }
+    }
+
+    .related-info {
+      padding: 1rem;
+
+      h4 { margin: 0 0 0.5rem 0; font-size: 1.1rem; }
+      
+      .related-meta, .related-rating {
+        display: flex;
+        gap: 1rem;
+        color: $text-secondary;
+        font-size: 0.85rem;
+        margin-bottom: 0.5rem;
+        i { font-size: 0.8rem; }
+      }
+
+      .related-desc {
+        color: #888;
+        font-size: 0.85rem;
+        margin-bottom: 1rem;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+     
+}
+
+      .related-price-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .related-price {
+          font-weight: bold;
+          font-size: 1.2rem;
+        }
+
+        .btn-primary-small {
+          background-color: $accent-color;
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 4px;
+          cursor: pointer;
+          font-weight: 600;
+          font-size: 0.9rem;
+          display: flex;
+          align-items: center;
+          gap: 0.3rem;
+          
+          &:hover { opacity: 0.9; }
+        }
+      }
+    }
+  }
